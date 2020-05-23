@@ -11,6 +11,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "enemy/goomba.h"
+#include "enemy/koopa.h"
 
 namespace {
 
@@ -61,7 +62,7 @@ void Main::ProcessInput()
 }
 
 void Main::Run() {
-	Goomba goomba;
+	std::unique_ptr<Tile> goomba = std::make_unique<Koopa>();
 
 	while (!glfwWindowShouldClose(window_))
 	{
@@ -70,7 +71,7 @@ void Main::Run() {
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		goomba.Draw();
+		goomba->Draw();
 
 		glfwSwapBuffers(window_);
 		glfwPollEvents();

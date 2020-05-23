@@ -4,7 +4,6 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include <chrono>
 #include <ctime> 
 #include <iostream>
 #include <string>
@@ -17,7 +16,6 @@ namespace {
 
 Goomba::Goomba() : Tile(ShaderManager::GetShaderProgram(ShaderManager::DEFAULT)) {
 	time_ = std::time(nullptr);
-	model_matrix_ = glm::mat4(1.0f);
 	textures_.emplace_back(LoadTexture(texture_path));
 }
 
@@ -29,9 +27,8 @@ void Goomba::Draw() {
 	Tile::Draw();
 }
 
-void Goomba::BindTexture() {
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, textures_[0]);
+unsigned int Goomba::GetActiveTexture() {
+	return textures_[0];
 }
 
 void Goomba::FlipTile() {

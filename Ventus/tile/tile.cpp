@@ -40,7 +40,8 @@ Tile::Tile(const unsigned int shader_program) : shader_program_(shader_program) 
 
 void Tile::Draw() {
 	glUseProgram(shader_program_);
-	BindTexture();
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, GetActiveTexture());
 	glUniformMatrix4fv(glGetUniformLocation(shader_program_, "M"), 1, GL_FALSE, glm::value_ptr(model_matrix_));
 	glUniformMatrix4fv(glGetUniformLocation(shader_program_, "V"), 1, GL_FALSE, glm::value_ptr(view_matrix_));
 	glBindVertexArray(vao_);
@@ -82,7 +83,4 @@ void Tile::Init() {
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
-}
-
-void Tile::BindTexture() {
 }

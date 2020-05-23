@@ -156,6 +156,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\glad.c" />
     <ClCompile Include="enemy\goomba.cpp" />
+    <ClCompile Include="enemy\koopa.cpp" />
     <ClCompile Include="main.cc" />
     <ClCompile Include="shader\shader_manager.cpp" />
     <ClCompile Include="tile\tile.cpp" />
@@ -163,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="enemy\goomba.h" />
+    <ClInclude Include="enemy\koopa.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="shader\shader_manager.h" />
     <ClInclude Include="stb_image.h" />

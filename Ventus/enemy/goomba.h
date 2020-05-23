@@ -8,10 +8,9 @@ class Goomba : public Tile {
 public:
 	Goomba();
 
-	void Draw() override;
-
 private:
-	void BindTexture() override;
+	unsigned int GetActiveTexture() override;
+	void Draw() override;
 	void FlipTile();
 
 	time_t time_;

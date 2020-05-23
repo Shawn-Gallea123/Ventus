@@ -20,7 +20,7 @@ protected:
 
 private:
 	void Init();
-	virtual void BindTexture() = 0;
+	virtual unsigned int GetActiveTexture() = 0;
 
 	unsigned int vao_;
 	unsigned int vbo_;
