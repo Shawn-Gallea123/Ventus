@@ -32,26 +32,25 @@ const unsigned int indices[] = {  // note that we start from 0!
 
 }
 
-Tile::Tile(const std::string& texture_path, const unsigned int shader_program) : shader_program_(shader_program) {
-	Init(texture_path);
-
-	// Move this
+Tile::Tile(const unsigned int shader_program) : shader_program_(shader_program) {
+	Init();
+	// TODO: Move this
 	view_matrix_ =  glm::scale(glm::mat4(1.0f), glm::vec3(0.5625f, 1.0f, 1.0f));
 }
 
 void Tile::Draw() {
 	glUseProgram(shader_program_);
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texture_);
+	BindTexture();
 	glUniformMatrix4fv(glGetUniformLocation(shader_program_, "M"), 1, GL_FALSE, glm::value_ptr(model_matrix_));
 	glUniformMatrix4fv(glGetUniformLocation(shader_program_, "V"), 1, GL_FALSE, glm::value_ptr(view_matrix_));
 	glBindVertexArray(vao_);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
-void Tile::Init(const std::string& texture_path) {
-	glGenTextures(1, &texture_);
-	glBindTexture(GL_TEXTURE_2D, texture_);
+unsigned int Tile::LoadTexture(const std::string& texture_path) {
+	unsigned int texture;
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
@@ -65,6 +64,12 @@ void Tile::Init(const std::string& texture_path) {
 	glGenerateMipmap(GL_TEXTURE_2D);
 	stbi_image_free(data);
 
+	glUseProgram(shader_program_);
+	glUniform1i(glGetUniformLocation(shader_program_, "textCoord"), 0);
+	return texture;
+}
+
+void Tile::Init() {
 	glGenVertexArrays(1, &vao_);
 	glBindVertexArray(vao_);
 	glGenBuffers(1, &vbo_);
@@ -77,7 +82,7 @@ void Tile::Init(const std::string& texture_path) {
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
+}
 
-	glUseProgram(shader_program_);
-	glUniform1i(glGetUniformLocation(shader_program_, "textCoord"), 0);
+void Tile::BindTexture() {
 }

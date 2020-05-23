@@ -155,14 +155,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\glad.c" />
-    <ClCompile Include="goomba.cpp" />
+    <ClCompile Include="enemy\goomba.cpp" />
     <ClCompile Include="main.cc" />
     <ClCompile Include="shader\shader_manager.cpp" />
     <ClCompile Include="tile\tile.cpp" />
     <ClCompile Include="Ventus.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="goomba.h" />
+    <ClInclude Include="enemy\goomba.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="shader\shader_manager.h" />
     <ClInclude Include="stb_image.h" />

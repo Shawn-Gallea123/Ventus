@@ -1,6 +1,6 @@
 #pragma once
 
-#include "tile/tile.h"
+#include "../tile/tile.h"
 
 #include <time.h>
 
@@ -11,6 +11,7 @@ public:
 	void Draw() override;
 
 private:
+	void BindTexture() override;
 	void FlipTile();
 
 	time_t time_;

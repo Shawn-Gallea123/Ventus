@@ -1,5 +1,6 @@
 #include "goomba.h"
 
+#include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -8,15 +9,16 @@
 #include <iostream>
 #include <string>
 
-#include "shader/shader_manager.h"
+#include "../shader/shader_manager.h"
 
 namespace {
 	const std::string texture_path = "textures/goomba_walk.png";
 }
 
-Goomba::Goomba() : Tile(texture_path, ShaderManager::GetShaderProgram(ShaderManager::DEFAULT)) {
+Goomba::Goomba() : Tile(ShaderManager::GetShaderProgram(ShaderManager::DEFAULT)) {
 	time_ = std::time(nullptr);
 	model_matrix_ = glm::mat4(1.0f);
+	textures_.emplace_back(LoadTexture(texture_path));
 }
 
 void Goomba::Draw() {
@@ -25,6 +27,11 @@ void Goomba::Draw() {
 		time_ = std::time(nullptr);
 	}
 	Tile::Draw();
+}
+
+void Goomba::BindTexture() {
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, textures_[0]);
 }
 
 void Goomba::FlipTile() {

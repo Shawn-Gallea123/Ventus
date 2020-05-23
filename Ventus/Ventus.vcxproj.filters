@@ -24,13 +24,13 @@
     <ClCompile Include="main.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="goomba.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tile\tile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="shader\shader_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy\goomba.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,13 +41,13 @@
     <ClInclude Include="stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="goomba.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="tile\tile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="shader\shader_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy\goomba.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,23 +2,27 @@
 
 #include <glm/glm.hpp>
 #include <string>
+#include <vector>
 
 class Tile {
 public:
-	explicit Tile(const std::string& texture_path, const unsigned int shader_program);
+	explicit Tile(const unsigned int shader_program);
 
 	virtual void Draw();
 
 protected:
+	unsigned int LoadTexture(const std::string& texture_path);
+
 	glm::mat4 model_matrix_;
 	glm::mat4 view_matrix_;
 	const unsigned int shader_program_;
+	std::vector<unsigned int> textures_;
 
 private:
-	void Init(const std::string& texture_path);
+	void Init();
+	virtual void BindTexture() = 0;
 
 	unsigned int vao_;
 	unsigned int vbo_;
 	unsigned int ebo_;
-	unsigned int texture_;
 };
